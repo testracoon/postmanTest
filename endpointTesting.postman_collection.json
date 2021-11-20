@@ -20,8 +20,8 @@
 							"",
 							"pm.test(\"User is Tester\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.username).to.eql(\"tester\");",
-							"    pm.expect(jsonData.fullname).to.eql(\"Testy Tester\");",
+							"    pm.expect(jsonData.username).to.eql(\"testerZZZ\");",
+							"    pm.expect(jsonData.fullname).to.eql(\"Testy TesterZZZ\");",
 							"});",
 							"",
 							"pm.test(\"AppCodes Contain Lanes\", function () {",
@@ -45,7 +45,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/staffLogin.php?logintype=U&username=tester&password=password",
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/staffLogin.php?logintype=U&username=testerZZZ&password=password12311",
 					"protocol": "http",
 					"host": [
 						"dev1",
