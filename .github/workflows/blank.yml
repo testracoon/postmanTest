@@ -38,6 +38,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project,
-          pwd,
-          ls -ltr,
+          pwd
+          ls -ltr
           newman run endpointTesting.postman_collection.json
