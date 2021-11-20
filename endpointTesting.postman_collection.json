@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "3b85a7da-acd0-4c5a-8262-d5814a162a5a",
+		"name": "endpointTesting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "StaffLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"User is Tester\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.username).to.eql(\"tester\");",
+							"    pm.expect(jsonData.fullname).to.eql(\"Testy Tester\");",
+							"});",
+							"",
+							"pm.test(\"AppCodes Contain Lanes\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.appcodes).to.contains(\"LANE\");",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/staffLogin.php?logintype=U&username=tester&password=password",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"staffLogin.php"
+					],
+					"query": [
+						{
+							"key": "logintype",
+							"value": "U"
+						},
+						{
+							"key": "username",
+							"value": "tester"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				},
+				"description": "Test LaneMode"
+			},
+			"response": []
+		},
+		{
+			"name": "ListLanes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"General Lane 1 & 2 Exist\", function () {",
+							"    pm.expect(pm.response.text()).to.include('General Lane 1');",
+							"    pm.expect(pm.response.text()).to.includes('General Lane 2');",
+							"});",
+							"",
+							"pm.test(\"Lanes Count = 4\", function () {",
+							"    var jsonData = pm.response.json();",
+							"     pm.expect(jsonData.lanes).to.have.lengthOf(4);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/listLanes.php",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"listLanes.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetLaneModeEnter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Respone Result\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql('OK');",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/setLaneMode.php?laneid=2&lanemode=ENTER",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"setLaneMode.php"
+					],
+					"query": [
+						{
+							"key": "laneid",
+							"value": "2"
+						},
+						{
+							"key": "lanemode",
+							"value": "ENTER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetLaneModeExit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Respone Result\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql('OK');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/setLaneMode.php?laneid=2&lanemode=EXIT",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"setLaneMode.php"
+					],
+					"query": [
+						{
+							"key": "laneid",
+							"value": "2"
+						},
+						{
+							"key": "lanemode",
+							"value": "EXIT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IdentifyMediaCard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"mediaType\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.mediatype).to.eql(\"HOTEL\");",
+							"});",
+							"",
+							"pm.test(\"confirmationid length more than 3\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.confirmationid).lengthOf.at.least(3);",
+							"});",
+							"",
+							"pm.test(\"Result = OK\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql('OK');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/identifyMedia.php?mediaid=335f7d2a",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"identifyMedia.php"
+					],
+					"query": [
+						{
+							"key": "mediaid",
+							"value": "335f7d2a"
+						},
+						{
+							"key": "mediatype",
+							"value": "HOTEL",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoadReservation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"room number is not null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.roomnum).not.null;",
+							"});",
+							"",
+							"pm.test(\"PAXCount At least 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var paxNUm = parseInt(jsonData.paxcount);",
+							"    pm.expect(paxNUm).to.be.above(0);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/loadReservation.php?confirmationid=4913918",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"loadReservation.php"
+					],
+					"query": [
+						{
+							"key": "confirmationid",
+							"value": "4913918"
+						}
+					]
+				},
+				"description": "Load Reservation"
+			},
+			"response": []
+		},
+		{
+			"name": "enterGuest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Result\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql('OK');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/enterGuest.php?nfcid=04ac0d7a835084&gid=7453410",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"enterGuest.php"
+					],
+					"query": [
+						{
+							"key": "nfcid",
+							"value": "04ac0d7a835084"
+						},
+						{
+							"key": "gid",
+							"value": "7453410"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ExitwristBand",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Results\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql(\"OK\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dev1.vantagelabs.co/v2_api/atlantis/exitWristband.php?nfcid=04ac0d7a835084",
+					"protocol": "http",
+					"host": [
+						"dev1",
+						"vantagelabs",
+						"co"
+					],
+					"path": [
+						"v2_api",
+						"atlantis",
+						"exitWristband.php"
+					],
+					"query": [
+						{
+							"key": "nfcid",
+							"value": "04ac0d7a835084"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
